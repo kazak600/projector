@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  redis:
+    build: ./redis
+    container_name: redis_q
+    network_mode: host
+    volumes:
+      - ./data/redis:/data
+    ports:
+      - '6379:6379'
+
+  beanstalkd:
+    build: ./beanstalkd
+    container_name: beanstalkd_q
+    ports:
+      - '11300:11300'
+    privileged: true
